@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mapbox Circle Bar Chart</title>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  <style>
+    body, html { margin: 0; padding: 0; height: 100%; }
+    #map { width: 100vw; height: 100vh; }
+    .zoom-display {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="zoom-display">Zoom: <span id="zoom-level">13.0</span></div>
+
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic3VwZXJqYWNrYmF1ZXIiLCJhIjoiY2twejZnNjlkMDYwazJ4cWI3dmxlc3ZieiJ9.1SCM6Yq0Gu4D3GFCA38F1g';
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/dark-v10',
+      center: [-73.99, 40.725],
+      zoom: 13,
+      minZoom: 13,
+      maxZoom: 16
+    });
+
+    map.on('load', () => {
+      fetch('./index-bar-chart-circles.json')
+        .then(res => res.json())
+        .then(data => {
+          map.addSource('bars', {
+            type: 'geojson',
+            data: data
+          });
+
+          map.addLayer({
+            id: 'bar-circles',
+            type: 'circle',
+            source: 'bars',
+            paint: {
+              'circle-radius': 6,
+              'circle-color': ['get', 'color'],
+              'circle-opacity': 0.85
+            },
+            filter: [
+              'all',
+              ['<=', ['get', 'min_zoom'], ['zoom']],
+              ['>=', ['get', 'max_zoom'], ['zoom']]
+            ]
+          });
+
+          map.on('zoom', () => {
+            document.getElementById('zoom-level').textContent = map.getZoom().toFixed(2);
+          });
+        });
+    });
+  </script>
+</body>
+</html>

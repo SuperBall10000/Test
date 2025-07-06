@@ -1,0 +1,209 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "bar_id": 1,
+        "segment_level": 1,
+        "min_zoom": 13.0,
+        "max_zoom": 16.0,
+        "color": "#FF6B6B"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0,
+          40.725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bar_id": 1,
+        "segment_level": 2,
+        "min_zoom": 13.75,
+        "max_zoom": 16.0,
+        "color": "#FF6B6B"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0,
+          40.725300000000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bar_id": 1,
+        "segment_level": 3,
+        "min_zoom": 14.5,
+        "max_zoom": 16.0,
+        "color": "#FF6B6B"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0,
+          40.7256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bar_id": 1,
+        "segment_level": 4,
+        "min_zoom": 15.25,
+        "max_zoom": 16.0,
+        "color": "#FF6B6B"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0,
+          40.7259
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bar_id": 2,
+        "segment_level": 1,
+        "min_zoom": 13.0,
+        "max_zoom": 16.0,
+        "color": "#4ECDC4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.99,
+          40.725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bar_id": 2,
+        "segment_level": 2,
+        "min_zoom": 13.75,
+        "max_zoom": 16.0,
+        "color": "#4ECDC4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.99,
+          40.725300000000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bar_id": 2,
+        "segment_level": 3,
+        "min_zoom": 14.5,
+        "max_zoom": 16.0,
+        "color": "#4ECDC4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.99,
+          40.7256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bar_id": 2,
+        "segment_level": 4,
+        "min_zoom": 15.25,
+        "max_zoom": 16.0,
+        "color": "#4ECDC4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.99,
+          40.7259
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bar_id": 3,
+        "segment_level": 1,
+        "min_zoom": 13.0,
+        "max_zoom": 16.0,
+        "color": "#45B7D1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.98,
+          40.725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bar_id": 3,
+        "segment_level": 2,
+        "min_zoom": 13.75,
+        "max_zoom": 16.0,
+        "color": "#45B7D1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.98,
+          40.725300000000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bar_id": 3,
+        "segment_level": 3,
+        "min_zoom": 14.5,
+        "max_zoom": 16.0,
+        "color": "#45B7D1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.98,
+          40.7256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bar_id": 3,
+        "segment_level": 4,
+        "min_zoom": 15.25,
+        "max_zoom": 16.0,
+        "color": "#45B7D1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.98,
+          40.7259
+        ]
+      }
+    }
+  ]
+}
