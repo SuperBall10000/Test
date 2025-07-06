@@ -38,7 +38,7 @@
     });
 
     map.on('load', () => {
-      fetch('./bar_chart_geojson.json')
+      fetch('./bar-chart-circles-animated.json')
         .then(res => res.json())
         .then(data => {
           map.addSource('bars', {
