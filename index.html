@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scroll-Driven Bars - Version 1.1.0</title>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <script src="https://unpkg.com/scrollama"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: sans-serif;
+      background: #000;
+    }
+    #map {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+    }
+    .step {
+      margin: 0 auto;
+      padding: 40vh 10vw;
+      font-size: 24px;
+      background: rgba(255,255,255,0.8);
+      border-bottom: 1px solid #ccc;
+    }
+    .scroller {
+      position: relative;
+      z-index: 10;
+    }
+    .version-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255,255,255,0.9);
+      padding: 6px 10px;
+      font-family: monospace;
+      font-size: 14px;
+      border-radius: 4px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="version-tag">Version 1.1.0</div>
+
+  <div class="scroller">
+    <div class="step" data-zoom="13.1">Start showing Bar 1</div>
+    <div class="step" data-zoom="13.5">Reveal more of Bar 1</div>
+    <div class="step" data-zoom="14.0">Start showing Bar 2</div>
+    <div class="step" data-zoom="14.5">Reveal more of Bar 2</div>
+    <div class="step" data-zoom="15.0">Start showing Bar 3</div>
+    <div class="step" data-zoom="15.5">Reveal more of Bar 3</div>
+  </div>
+
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic3VwZXJqYWNrYmF1ZXIiLCJhIjoiY2twejZnNjlkMDYwazJ4cWI3dmxlc3ZieiJ9.1SCM6Yq0Gu4D3GFCA38F1g';
+    const center = [-73.9965, 40.725];
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: {
+        version: 8,
+        sources: {},
+        layers: []
+      },
+      center: center,
+      zoom: 13,
+      minZoom: 13,
+      maxZoom: 16
+    });
+
+    map.on('load', () => {
+      fetch('./bars-staggered-final.json')
+        .then(res => res.json())
+        .then(data => {
+          map.addSource('bars', {
+            type: 'geojson',
+            data: data
+          });
+          map.addLayer({
+            id: 'bar-circles',
+            type: 'circle',
+            source: 'bars',
+            paint: {
+              'circle-radius': 9,
+              'circle-color': ['get', 'color'],
+              'circle-opacity': 0.9
+            },
+            filter: [
+              'all',
+              ['<=', ['get', 'min_zoom'], ['zoom']],
+              ['>=', ['get', 'max_zoom'], ['zoom']]
+            ]
+          });
+        });
+    });
+
+    const scroller = scrollama();
+    scroller
+      .setup({
+        step: '.step',
+        offset: 0.5,
+        debug: false
+      })
+      .onStepEnter(response => {
+        const zoom = parseFloat(response.element.dataset.zoom);
+        map.easeTo({
+          center: center,
+          zoom: zoom,
+          duration: 800
+        });
+      });
+  </script>
+</body>
+</html>
